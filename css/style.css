@@ -1,9 +1,66 @@
 .fancy-header {
-    color: purple;
+    color: #C8C8CD;
+    text-align: center;
+}
 
+h3 {
+    color: #C8C8CD;
+    text-decoration: underline;
+    text-align: center;
 }
 
 .background {
-    background-color: black;
-    color:white;
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/black_linen_v2.png");
+    font-family: 'Teko', sans-serif;
+    font-size: 40px;
+    color: teal;
+
+}
+
+ol ul {
+    list-style-image: url('/pix/bulbpoint.jpg');
+}
+
+
+li {
+    text-align: center;
+    list-style-position: inside;
+
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    border-color: gray;
+    padding: 10px;
+}
+
+
+tr, td, th {
+    border-bottom: 3px solid #ddd;
+    text-align: center;
+}
+
+
+.img-container {
+    height: 250px;
+    float: inside;
+    width: 24%;
+    padding: 2px;
+}
+
+a:link {
+    color: teal;
+}
+a:visited {
+    color: teal;
+}
+
+a:hover {
+    background-color: lightgreen;
+}
+
+a:active {
+    background-color: hotpink;
 }
