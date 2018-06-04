@@ -1,0 +1,37 @@
+h1 {
+    text-align: center;
+}
+
+li {
+    background: lightgray;
+    list-style-type: none;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    margin: 5px 0;
+
+}
+
+.alert-info {
+  text-align: center;
+  background: #7dfff8;
+  padding: 1em;color: black;
+
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media screen and (min-width:768px) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media screen and (min-width:992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media screen and (min-width:1200px) {
+
+}

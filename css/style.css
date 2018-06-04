@@ -33,28 +33,31 @@ ol ul {
 
 .box1 {
     position: relative;
-    bottom: -200px;
-    right: -525px;
-    width: 300px;
-    border: 3px solid white;
+    top: 25px;
+    left: 0px;
+    width: 400px;
+    border: 1px solid white;
+    float: left
 }
 
 .box2 {
     position: relative;
-    bottom: 325px;
+    top: 25px;
     left: 0;
-    width: 300px;
-    border: 3px solid white;
-    float: right;
+    width: 400px;
+    border: 1px solid white;
+    float: left;
 
 }
 
 .box3 {
     position: relative;
-    bottom: 325px;
+    top: 25px;
     left: 0;
-    width: 300px;
-    border: 3px solid white;
+    width: 400px;
+    border: 1px solid white;
+    float: left;
+
 
 }
 
@@ -70,14 +73,17 @@ table {
 tr, td, th {
     border-bottom: 3px solid #ddd;
     text-align: center;
+
 }
 
 
 .img-container {
     height: 250px;
-    float: inside;
+   top: 25px;
     width: 24%;
     padding: 2px;
+    position:relative;
+    clear: both;
 }
 
 a:link {

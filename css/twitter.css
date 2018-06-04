@@ -69,7 +69,10 @@ a {
     width: 100%;
     position: fixed;
     display: inline-block;
-    z-index: 1001;
+    z-index: 1000;
+    background-color: white;
+    top: 0;
+    height: 66px;
 
 }
 
@@ -86,18 +89,18 @@ a {
 .profile-image {
     position: absolute;
     top: 250px;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .profile-details {
     width: calc(25% - 1em);
-    margin: 0 .5 em;
+    margin: 0 .5em;
     float: left;
 }
 
 .timeline {
     width: calc(50% - 1em);
-    margin: 0 .5 em;
+    margin: 0 .5em;
     float: left;
 }
 
@@ -109,6 +112,7 @@ a {
 
 .container {
    margin: 2em 0em;
+   width: 100%;
 
 }
 
@@ -139,5 +143,5 @@ a {
 }
 
 .profile-entry {
-    margin: .5em
+    margin: .5em 0;
 }
