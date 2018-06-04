@@ -18,13 +18,43 @@ h3 {
 }
 
 ol ul {
-    list-style-image: url('/pix/bulbpoint.jpg');
+    border: 5px;
+
+}
+
+.bulb {
+    list-style-image: url("../pix/bulbpoint.jpg");
+    align-content: center;
+    margin: 10px;
+    padding: 5px;
+
 }
 
 
-li {
-    text-align: center;
-    list-style-position: inside;
+.box1 {
+    position: relative;
+    bottom: -200px;
+    right: -525px;
+    width: 300px;
+    border: 3px solid white;
+}
+
+.box2 {
+    position: relative;
+    bottom: 325px;
+    left: 0;
+    width: 300px;
+    border: 3px solid white;
+    float: right;
+
+}
+
+.box3 {
+    position: relative;
+    bottom: 325px;
+    left: 0;
+    width: 300px;
+    border: 3px solid white;
 
 }
 
