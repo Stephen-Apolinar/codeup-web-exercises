@@ -48,7 +48,13 @@
     margin: 10px 0;
 }
 
+.one-sixth {
+    width: 16.6666%;
+}
 
+.one-half-offset {
+    margin-left: 50%;
+}
 
 @media screen and (max-width: 1200px) {
     .fractions {
