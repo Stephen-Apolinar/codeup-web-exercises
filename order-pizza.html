@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/custom.css"/>
     <style type="text/css">
-        .container-fluid {
-        }
+
     </style>
 </head>
 <body>
 
+<form method="POST" action="https://webhook.site/98ca7b19-86e6-4625-8478-bc8ede59b2ec">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Pizza World</a>
@@ -49,7 +49,7 @@
         <img class="pizzabg" src="pix/pizza.png">
         <h1>Welcome to Pizza World</h1>
     </div>
-</div>
+
 
 
 
@@ -140,10 +140,18 @@
             <option value="2">BBQ Sauce</option>
             <option value="3">Alfredo Sauce</option>
         </select>
+        <div class="card-header">How Much?</div>
+        <select class="custom-select">
+            <option selected>Light</option>
+            <option value="1">Normal</option>
+            <option value="2">Extra</option>
+        </select>
     </div>
     <div class="card-footer">
-        <a href="#" class="btn btn-primary float-right">Next Step <i class="fas fa-angle-right"></i></a>
-        <a href="#" class="btn btn-primary float-right"><i class="fas fa-angle-left"></i>Previous Step</i></a>
+        <div class="btn-group float-right" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary"><i class="fas fa-angle-left"></i>Previous Step</button>
+            <button type="button" class="btn btn-primary">Next Step<i class="fas fa-angle-right"></i></button>
+        </div>
     </div>
 </div>
 
@@ -204,9 +212,11 @@
         <a href="#" class="btn btn-primary float-right">Checkout <i class="fas fa-shopping-cart"></i></a>
     </div>
 </div>
+</form>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <!-- Your custom JS goes here -->
 </body>
 </html>
