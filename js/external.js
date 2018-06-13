@@ -5,7 +5,7 @@ alert("Welcome to my Website!");
 
 
 
-var userInput = prompt('What is your favorite color?');
+var userInput = prompt("What's your favorite color?");
 alert('Great! ' + userInput + ' is my favorite color too!');
 
 
@@ -21,7 +21,7 @@ totalRentalCost =
         + parseInt(brotherBearDays)
         + parseInt(herculesDays))
     * parseInt(rentalPerDayDollars);
-alert("You will end up paying $" + totalRentalCost);
+alert("You will end up paying $" + totalRentalCost.toFixed(2));
 
 
 
