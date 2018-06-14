@@ -23,14 +23,12 @@
     6. Checkout back to your master branch
     git checkout master */
 
-        var firstName = prompt("What is your first name ?").toLowerCase();
-        var age = prompt("What is your age?");
 
     function makeUsername(firstName, age) {
-        return (firstName.length + firstName.substring(0,1) + age);
+        var output =firstName.length + firstName[0].toLowerCase() + age;
+        return output;
     }
-    console.log(makeUsername(firstName,age));
-    alert("your new user name is " + makeUsername(firstName, age));
+    console.log(makeUsername("Stephen",26));
 </script>
 
 </body>
