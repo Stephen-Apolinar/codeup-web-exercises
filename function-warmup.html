@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Warmup</title>
+</head>
+<body>
+<script>
+    "use strict";
+    /*. Inside codeup-web-exercises, create a branch called "function-practice"
+    git checkout -b function-practice
+    2. Create a function called makeUsername() in an html file called function-warmup.html
+    3. This function should define two parameters: firstName and age
+    4. makeUsername() should return a username string consisting of the length of the firstName, combined with the first letter of the firstName in lowercase, combined with the age value
+    Example 1:
+    makeUsername("John", 20); // output = '4j20'
+    Example 2:
+    makeUsername("Sandy", 25); // output = '5s25'
+    5. Add and commit your function, push up your branch to your remote repo
+    git add .
+        git commit -m 'Some message'
+    git push origin function-practice
+    6. Checkout back to your master branch
+    git checkout master */
+
+        var firstName = prompt("What is your first name ?").toLowerCase();
+        var age = prompt("What is your age?");
+
+    function makeUsername(firstName, age) {
+        return (firstName.length + firstName.substring(0,1) + age);
+    }
+    console.log(makeUsername(firstName,age));
+    alert("your new user name is " + makeUsername(firstName, age));
+</script>
+
+</body>
+</html>
