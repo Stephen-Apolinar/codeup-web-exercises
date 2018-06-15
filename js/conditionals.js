@@ -94,23 +94,29 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 (function () {
     function analyzeColor(colors) {
         if (colors === 'red') {
-            console.log("Lava is red");
+            return colors + " is the color of a stop sign";
         }
         else if (colors === 'orange') {
-            console.log("Oranges are orange");
+           return colors +" are orange";
         }
         else if (colors === 'green') {
-            console.log("Green is the color of grass");
+            return colors + " is the color of grass";
         }
         else if (colors === 'blue') {
-            console.log("The sky is blue");
+            return colors + " is the color of the sky";
         }
         else {
-            console.log("I do not know anything by that color" + colors)
+            return "I do not know anything by that color" + colors;
         }
     }
+    /*console.log(analyzeColor('red'));
+    console.log(analyzeColor('orange'));
+    console.log(analyzeColor('green'));
+    console.log(analyzeColor('blue'));*/
 
-    analyzeColor(randomColor);
+    console.log(analyzeColor(randomColor));
+
+
 
 }());
 
@@ -122,19 +128,15 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 (function() {
     switch (randomColor) {
         case 'red':
-            console.log("Lava is red");
-            break;
+            return colors + " is the color of a stop sign";
         case 'orange':
-            console.log("Oranges are orange");
-            break;
+            return colors +" are orange";
         case 'green':
-            console.log("green is the color of grass");
-            break;
+            return colors + " is the color of grass";
         case 'blue':
-            console.log("The sky is blue");
-            break;
+            return colors + " is the color of the sky";
         default:
-            console.log("I don't know anything about the color " + randomColor)
+            return "I do not know anything by that color" + colors;
     }
 }());
 
