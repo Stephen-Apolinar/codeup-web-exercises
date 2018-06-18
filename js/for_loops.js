@@ -1,5 +1,5 @@
 'use strict';
-
+//1
 function showMultiplicationTable(number) {
     for (var i = 1; i<= 10; i++) {
         console.log(number + "x" + i + "= " + (number*i));
@@ -9,7 +9,7 @@ function showMultiplicationTable(number) {
 showMultiplicationTable(7);
 
 
-
+//2
 function randomInt(start, end) {
     return Math.floor(Math.random() * (end - start)) + start;
 }
@@ -37,7 +37,7 @@ for (var i = 1; i <= 10; i++) {
 }
 
 
-
+//3
 var string;
 for(var i = 1; i <= 9; i++) {
     i = i.toString();
@@ -50,7 +50,7 @@ for(var i = 1; i <= 9; i++) {
 
 
 
-
+//4
 
 for(var i = 100; i >= 5; i -= 5) {
     console.log(i);
