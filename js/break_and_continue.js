@@ -29,7 +29,22 @@ for(var i = 1; i <= 50; i++) {
     }
 }
 
-
+// while (true) {
+//     var userNum = prompt("enter your odd number")
+// }
+//  console.log("number to skip is " + userNum);
+//
+// for (var i = 1; i<=50; i += 1) {
+//     if (i % 2 === 0) {
+//         continue;
+//     }
+//     if (i!== parseInt(userNum)){
+//         console.log("here is an odd number" + i);
+//     } else {
+//         console.log("yikes! skipping number" + userNum);
+//     }
+//
+// }
 
 
 

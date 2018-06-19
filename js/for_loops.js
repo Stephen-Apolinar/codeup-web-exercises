@@ -38,16 +38,23 @@ for (var i = 1; i <= 10; i++) {
 
 
 //3
-var string;
-for(var i = 1; i <= 9; i++) {
-    i = i.toString();
+// var string;
+// for(var i = 1; i <= 9; i++) {
+//     i = i.toString();
+//
+//     string = i.substring(i.length - 1);
+//
+//     console.log(string.repeat(i));
+//
+// }
 
-    string = i.substring(i.length - 1);
-
-    console.log(string.repeat(i));
-
+for (var i = 1; i<=9; i+=1) {
+    var output = "";
+    for (var j = 1; j <= i; j+=1) {
+        output += i;
+    }
+    console.log(output);
 }
-
 
 
 //4
