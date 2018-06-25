@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Maps API</title>
+    <style type="text/css">
+        #map-canvas {
+            width: 100%;
+            height: 750px;
+        }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #origin-input,
+        #destination-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 200px;
+        }
+
+        #origin-input:focus,
+        #destination-input:focus {
+            border-color: #4d90fe;
+        }
+
+        #mode-selector {
+            color: #fff;
+            background-color: #4d90fe;
+            margin-left: 12px;
+            padding: 5px 11px 0px 11px;
+        }
+
+        #mode-selector label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--search box-->
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<input id="origin-input" class="controls" type="text"
+       placeholder="Enter an origin location">
+
+<input id="destination-input" class="controls" type="text"
+       placeholder="Enter a destination location">
+
+<div id="mode-selector" class="controls">
+    <input type="radio" name="type" id="changemode-walking" checked="checked">
+    <label for="changemode-walking">Walking</label>
+
+    <input type="radio" name="type" id="changemode-transit">
+    <label for="changemode-transit">Transit</label>
+
+    <input type="radio" name="type" id="changemode-driving">
+    <label for="changemode-driving">Driving</label>
+</div>
+
+<!-- div to hold map -->
+<div id="map-canvas"></div>
+
+<!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIPbNd4ljI6NdSyP5ugk4XoKDzw2VEZM"></script>-->
+
+<!-- Script to show address on map -->
+<script type="text/javascript">
+
+    "use strict";
+
+    // (function() {
+    //     "use strict";
+    //
+    //     // Set our map options
+    //     var mapOptions = {
+    //         // Set the zoom level
+    //         zoom: // 5,
+    //               // 10,
+    //               // 15,
+    //                  16,
+    //
+    //         // This sets the center of the map at our location
+    //         center: {
+    //             lat:  29.426791, //  47.2492,
+    //             lng: -98.489602  // -68.5998
+    //         }
+    //     };
+    //
+    //     // Render the map
+    //     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    //
+    //     // Set our address to geocode
+    //     var address = "250 W Main St, Fort Kent, ME 04743";
+    //
+    //     // Init geocoder object
+    //     var geocoder = new google.maps.Geocoder();
+    //
+    //     // Geocode our address
+    //     geocoder.geocode({"address": address}, function(results, status) {
+    //
+    //         // Check for a successful result
+    //         if (status === google.maps.GeocoderStatus.OK) {
+    //
+    //             // Recenter the map over the address
+    //             map.setCenter(results[0].geometry.location);
+    //         } else {
+    //
+    //             // Show an error message with the status if our request fails
+    //             alert("Geocoding was not successful - STATUS: " + status);
+    //         }
+    //     });
+    //
+    //     var swampBuck = { lat: 47.2492, lng: -68.5998 };
+    //
+    //     // Add the marker to our existing map
+    //     var marker = new google.maps.Marker({
+    //         position: swampBuck,
+    //         map: map,
+    //         animation: google.maps.Animation.DROP
+    //     });
+    //
+    //     // Create a new infoWindow object with content
+    //     var infoWindow = new google.maps.InfoWindow({
+    //         content: "<strong>Swamp Buck Restaurant and Lounge</strong><br><em>This place has a great atmosphere<br>and the best broiled scallops dish!</em><br><a href=\"http://www.fortkentchamber.com/swamp-buck-restaurant.html\" target='_blank'>Swamp Buck Website</a>"
+    //     });
+    //
+    //     // Attaches an info window to a marker with the provided message. When the
+    //     // marker is clicked, the info window will open with the content
+    //     marker.addListener('click', function() {
+    //         infoWindow.open(marker.get('map'), marker);
+    //     });
+    // })();
+
+    // ================ Bonus
+
+    function initAutocomplete() {
+
+        // Set our map options
+        var mapOptions = {
+            // Set the zoom level
+            zoom: 4,
+            // 5,
+            // 10,
+            // 15,
+            // 16,
+
+            // This sets the center of the map at our location
+            center: {
+                lat:  29.426791, //  47.2492285,
+                lng: -98.489602  // -68.5997974
+            }
+        };
+
+
+        // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function (place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
+        // Set our address to geocode
+        // var address = "250 W Main St, Fort Kent, ME 04743";
+
+        // Init geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+        // Geocode our address
+        geocoder.geocode({address: "Swamp Buck"}, function(results, status) {
+
+            // Check for a successful result
+            if (status === google.maps.GeocoderStatus.OK) {
+
+                // Recenter the map over the address
+                map.setCenter(results[0].geometry.location);
+                console.log("Geocoder status: " + status);
+                console.log(results[0].geometry.location.lat());
+                console.log(results[0].geometry.location.lng());
+            } else {
+
+                // Show an error message with the status if our request fails
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
+
+        // REVERSE GEOCODE
+        // geocoder.geocode({location: {lat: 29.426791, lng: -98.489602}}, function(results, status) {
+        //
+        //     // Check for a successful result
+        //     if (status === google.maps.GeocoderStatus.OK) {
+        //
+        //         // Recenter the map over the address
+        //         map.setCenter(results[0].geometry.location);
+        //         console.log("Geocoder status: " + status);
+        //         console.log(results);
+        //     } else {
+        //
+        //         // Show an error message with the status if our request fails
+        //         alert("Geocoding was not successful - STATUS: " + status);
+        //     }
+        // });
+
+        // Multiple markers location, latitude, and longitude
+        var markers = [
+            ['Swamp Buck', 47.2492285, -68.5997974], // Fort Kent, Maine
+            ['The World of Beer', 38.9812, -77.0936], // Bethesda, Maryland
+            ['Yellowtail Sushi', 29.6099, -98.5999] // San Antonio, Texas
+        ];
+
+        // Info window content
+        var infoWindowContent = [
+            ['<div class="info_content">' +
+            '<a href="http://www.fortkentchamber.com/swamp-buck-restaurant.html" target="_blank"><h3>Swamp Buck Restaurant & Lounge</h3></a>' +
+            '<p>This restaurant has a relaxing woodland environment<br>with the best broiled scallops dish you\'ve ever had</p>' + '<p><em>250 W Main St, Fort Kent, ME 04743</em></p>' + '</div>'],
+            ['<div class="info_content">' +
+            '<a href="https://worldofbeer.com/Locations/Bethesda" target="_blank"><h3>The World of Beer</h3></a>' +
+            '<p>This pub has an amazing selection of world renowned<br>beer along with an amazing selection of pub style food.</p>' + '<p><em>7200 Wisconsin Ave, Bethesda, MD 20814</em></p>' + '</div>'],
+            ['<div class="info_content">' +
+            '<a href="https://www.yellowfishsushi.com/" target="_blank"><h3>Yellowfish Sushi</h3></a>' +
+            '<p>A restaurant in the perfect area uptown, with plenty to<br>do after you get done filling up on their long list of<br>delicious sushi rolls</p>' + '<p><em>17711 Interstate 10 West suite 104, San Antonio, TX 78257</em></p>' + '</div>']
+        ];
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+        // Place each marker on the map
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labelIndex = 0;
+        for( i = 0; i < markers.length; i++ ) {
+            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: markers[i][0],
+                animation: google.maps.Animation.DROP,
+                label: labels[labelIndex++ % labels.length]
+            });
+
+            // Add info window to marker
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(infoWindowContent[i][0]);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            //     return function() {
+            //         infoWindow.setContent(infoWindowContent[i][0]);
+            //         infoWindow.open(map, marker);
+            //     }
+            // })(marker, i));
+            // google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
+            //     return function() {
+            //         infoWindow.setContent(infoWindowContent[i][0]);
+            //         infoWindow.close(map, marker);
+            //     }
+            // })(marker, i));
+        }
+        new AutocompleteDirectionsHandler(map);
+
+    }
+    function AutocompleteDirectionsHandler(map) {
+        this.map = map;
+        this.originPlaceId = null;
+        this.destinationPlaceId = null;
+        this.travelMode = 'WALKING';
+        var originInput = document.getElementById('origin-input');
+        var destinationInput = document.getElementById('destination-input');
+        var modeSelector = document.getElementById('mode-selector');
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+
+        var originAutocomplete = new google.maps.places.Autocomplete(
+            originInput, {placeIdOnly: true});
+        var destinationAutocomplete = new google.maps.places.Autocomplete(
+            destinationInput, {placeIdOnly: true});
+
+        this.setupClickListener('changemode-walking', 'WALKING');
+        this.setupClickListener('changemode-transit', 'TRANSIT');
+        this.setupClickListener('changemode-driving', 'DRIVING');
+
+        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+    }
+
+    // Sets a listener on a radio button to change the filter type on Places
+    // Autocomplete.
+    AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+        var radioButton = document.getElementById(id);
+        var me = this;
+        radioButton.addEventListener('click', function() {
+            me.travelMode = mode;
+            me.route();
+        });
+    };
+
+    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+        var me = this;
+        autocomplete.bindTo('bounds', this.map);
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.place_id) {
+                window.alert("Please select an option from the dropdown list.");
+                return;
+            }
+            if (mode === 'ORIG') {
+                me.originPlaceId = place.place_id;
+            } else {
+                me.destinationPlaceId = place.place_id;
+            }
+            me.route();
+        });
+
+    };
+
+    AutocompleteDirectionsHandler.prototype.route = function() {
+        if (!this.originPlaceId || !this.destinationPlaceId) {
+            return;
+        }
+        var me = this;
+
+        this.directionsService.route({
+            origin: {'placeId': this.originPlaceId},
+            destination: {'placeId': this.destinationPlaceId},
+            travelMode: this.travelMode
+        }, function(response, status) {
+            if (status === 'OK') {
+                me.directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    };
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIPbNd4ljI6NdSyP5ugk4XoKDzw2VEZM&libraries=places&callback=initAutocomplete"
+        async defer></script>
+</body>
+</html>
