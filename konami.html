@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>konami code</title>
+
+
+</head>
+<style>
+    #contraScreen {
+        height: 950px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    body {
+        background: black;
+    }
+
+    h1 {
+        color: red;
+    }
+</style>
+<body>
+<audio id = "xyz" src ="pix/contraAudio.mp3" type="audio/mp3"></audio>
+<h1>Konami Code</h1>
+<div id = "contraScreen">
+
+</div>
+
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+    const konamiCode = [
+        'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+        'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+        'b', 'a', 'Enter'
+    ];
+    var i = 0;
+    $("body").keydown(function(event) {
+        if((i == (konamiCode.length -1)) && event.key == konamiCode[konamiCode.length -1]) {
+            alert("yay! 30 lives");
+            $("#contraScreen").css("background-image", "url(pix/contra-start.jpg)");
+            $("xyz").trigger("play");
+        } else if(event.key == konamiCode[i]) {
+            i++;
+            console.log(event.key);
+        } else {
+            i = 0;
+        }
+    });
+
+</script>
+</body>
+</html>
