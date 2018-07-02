@@ -18,12 +18,39 @@
     h1 {
         color: red;
     }
+
+    #player1 {
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
+        -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+        animation-name: example;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        background-repeat: no-repeat;
+    }
+    @-webkit-keyframes example {
+        0%   {left:0px; top:0px;}
+        25%  {left:1500px; top:0px;}
+        50%  {left:0px; top:500px;}
+        75%  {left:1500px; top:500px;}
+        /*100% {left:0px; top:0px;}*/
+    }
+
 </style>
 <body>
-<audio id = "xyz" src ="pix/contraAudio.mp3" type="audio/mp3"></audio>
+<audio id="audio1">
+    <source src="pix/contraAudio.mp3" type="audio/mp3" />
+</audio>
 <h1>Konami Code</h1>
 <div id = "contraScreen">
 
+</div>
+
+<div id = "player1">
+    <!--<img src="pix/player1.gif">-->
 </div>
 
 
@@ -31,7 +58,7 @@
 <script type="text/javascript">
 
 
-    const konamiCode = [
+    var konamiCode = [
         'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
         'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
         'b', 'a', 'Enter'
@@ -41,7 +68,9 @@
         if((i == (konamiCode.length -1)) && event.key == konamiCode[konamiCode.length -1]) {
             alert("yay! 30 lives");
             $("#contraScreen").css("background-image", "url(pix/contra-start.jpg)");
-            $("xyz").trigger("play");
+            var myAudio1 = document.getElementById("audio1");
+            myAudio1.play();
+            $("#player1").css("background-image", "url(pix/player1.gif)");
         } else if(event.key == konamiCode[i]) {
             i++;
             console.log(event.key);
