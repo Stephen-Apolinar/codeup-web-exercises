@@ -28,7 +28,9 @@
         <span>X</span>
     </div>
 
-    <h2>Register for our site!</h2>
+    <div>
+        <h2>Register with us!</h2>
+    </div>
 
     <dl>
         <dt>Big Bend National Park</dt>
@@ -79,6 +81,7 @@
 
     <button>change last list</button>
 
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script src="js/jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
         "use strict";
@@ -107,16 +110,16 @@
                 $(this).next().slideToggle();
             });
 
-            // $("h3").click(function () {
-            //     $(this).next().css('font-weight', 'bold');
-            //
-            // });
+            $("h3").click(function () {
+                $(this).next().css('font-weight', 'bold');
+
+            });
 
             $("li").click(function() {
                 $(this).parent().children().first().css("color", "blue")
             });
             $('span').click(function() {
-                $('div').hide();
+                $('.alert').hide();
             });
 
         });
