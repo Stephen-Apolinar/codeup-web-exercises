@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>National Park FAQ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 </head>
 <style>
     .invisible {
@@ -12,8 +13,22 @@
     .hilighter {
         background-color: lime;
     }
+
+    .yellow {
+        background-color: yellow;
+    }
+
+    #national-parks, #state-parks-tennessee, #state-parks-texas {
+        display: none;
+    }
 </style>
 <body>
+    <div class="alert alert-info" role="alert">
+        <h3>Would you like to sign up for our newsletter?</h3>
+        <span>X</span>
+    </div>
+
+    <h2>Register for our site!</h2>
 
     <dl>
         <dt>Big Bend National Park</dt>
@@ -47,14 +62,14 @@
         <li>Carlsbad Caverns</li>
         <li>Denali</li>
     </ul>
-    <h3>State Parks of Texas</h3>
+    <h3 id="texas-heading">State Parks of Texas</h3>
     <ul id="state-parks-texas">
         <li>Abilene</li>
         <li>Big Bend</li>
         <li>Choke Canyon</li>
         <li>Davis Mountains</li>
     </ul>
-    <h3>State Parks of Tennessee</h3>
+    <h3 id="tenn-heading">State Parks of Tennessee</h3>
     <ul id="state-parks-tennessee">
         <li>Abilene</li>
         <li>Big Bend</li>
@@ -68,35 +83,43 @@
     <script type="text/javascript">
         "use strict";
 
-        // $("dd").addClass("invisible");
-
-        $('#highlight-important').click(function(event) {
-            event.preventDefault();
-            $('dd').toggleClass('invisible');
-        });
 
 
         $(function () {
+
+            $('#highlight-important').click(function() {
+                $('dd').toggleClass('invisible');
+            });
+
+
+            $('h2').hide().fadeIn(8000);
+
             $("dt").click(function () {
                 $(this).toggleClass("hilighter");
             });
-        });
 
-        $(document).ready(function () {
             $("button").click(function () {
-                $("ul > li:last-of-type").toggleClass("hilighter");
-            })
+                $("ul > li:last-of-type").toggleClass("yellow");
+
+            });
+
+            $('h3').click(function() {
+                $(this).next().slideToggle();
+            });
+
+            // $("h3").click(function () {
+            //     $(this).next().css('font-weight', 'bold');
+            //
+            // });
+
+            $("li").click(function() {
+                $(this).parent().children().first().css("color", "blue")
+            });
+            $('span').click(function() {
+                $('div').hide();
+            });
 
         });
-        // for all bold (need to change individually
-        // $(document).ready(function () {
-        //     $("h3").click(function () {
-        //         $("li").css("font-weight", "bold");
-        //     })
-        //
-        // });
-
-
 
     </script>
 </body>
