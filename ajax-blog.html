@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog</title>
+</head>
+<body>
+
+<div id="post"></div>
+<button id="update">Refresh Inventory</button>
+<script src="js/jquery.js"></script>
+
+<script>
+    (function() {
+        "use strict";
+
+        function makeRequestAndRenderResults() {
+
+            var request = $.get("data/blog.json");
+            request.fail(function(jqXHR, status, error) {
+                console.log(status);
+                console.log(error);
+            });
+            request.done(function(data) {
+                var htmlString = "";
+                data.forEach(function(blog) {
+                    htmlString += "<div>";
+                    htmlString += "<h1>" + blog.title + "</h1>";
+                    htmlString += "<p>" + blog.content + "</p>";
+                    htmlString += "Category:";
+                    htmlString += "<div>" + blog.categories.join(", ") + "</div>";
+                    htmlString += "Date Posted:";
+                    htmlString += "<div>" + blog.date + "</div>";
+                    htmlString += "</div>";
+                });
+
+                $("#post").html(htmlString);
+            });
+        }
+
+        $("#update").click(function() {
+            makeRequestAndRenderResults();
+        });
+
+    })();
+</script>
+</body>
+</html>
