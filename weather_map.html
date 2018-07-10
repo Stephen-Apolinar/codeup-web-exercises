@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+</head>
+<body>
+
+<table class="col-8" id="products">
+    <thead>
+    <tr class="mb-2 bg-danger text-white">
+        <th class="col-5">Day 1</th>
+        <th class="col-5">Day 2</th>
+        <th class="col-5">Day 3</th>
+    </tr>
+    </thead>
+    <tbody id="weather-container"></tbody>
+<script src="js/jquery.js"></script>
+<script>
+
+    var request = $.get("http://api.openweathermap.org/data/2.5/forecast", {  //   query string
+        APPID: "2d57ac2e3a839b409550526feec9edaa",
+        q:     "San Antonio, US",
+        units: "imperial"
+    });
+    request.done(function (response) {
+        var htmlString = "";
+        for (var i = 0; i<=response.list.length-1; i+=8) {
+            htmlString += "<tr>";
+            htmlString += "<td>" + "High " + response.list[i].main.temp_max + "/" + "Low " + response.list[i].main.temp_min + "</td>";
+            htmlString += "</tr>";
+            // htmlString += "<p>"  "</p>";
+            // console.log(response.list[i]);
+            // console.log(response.list[i].main.temp_min);
+            // console.log(response.list[i].main.humidity);
+            // console.log(response.list[i].main.pressure);
+
+        }
+        $("#weather-container").html(htmlString);
+    });
+
+
+</script>
+</body>
+</html>
