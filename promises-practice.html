@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bonus</title>
+</head>
+<body>
+<form action=>
+    Username: <input type="text" name="usrname"><br>
+    <button type="submit" value="Submit">submit</button>
+</form>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script>
+    $.get("data/profiles.json").then((data) => {
+        console.log(data);
+    })
+</script>
+</body>
+</html>

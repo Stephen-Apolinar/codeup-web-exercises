@@ -1,6 +1,6 @@
 "use strict";
 const wait = seconds => {
-    new Promise((resolve) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve();
         }, seconds);
